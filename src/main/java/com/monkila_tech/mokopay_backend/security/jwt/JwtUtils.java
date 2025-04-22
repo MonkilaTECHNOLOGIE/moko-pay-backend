@@ -14,7 +14,7 @@ import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Component;
 import org.springframework.web.util.WebUtils;
 
-import com.monkilatech.madeinrdc.security.services.UserDetailsImpl;
+import com.monkila_tech.mokopay_backend.security.services.UserDetailsImpl;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;

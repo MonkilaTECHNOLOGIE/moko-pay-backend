@@ -14,7 +14,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.monkilatech.madeinrdc.security.services.UserDetailsServiceImpl;
+import com.monkila_tech.mokopay_backend.security.services.UserDetailsServiceImpl;
 
 import java.io.IOException;
 

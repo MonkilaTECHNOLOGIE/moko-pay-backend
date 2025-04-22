@@ -1,17 +1,18 @@
-package com.monkilatech.madeinrdc.repository;
+package com.monkila_tech.mokopay_backend.repository;
 
 import java.util.Optional;
-import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.monkilatech.madeinrdc.models.User;
+import com.monkila_tech.mokopay_backend.models.User;
+
+
 
 @Repository
-public interface UserRepository extends JpaRepository<User, UUID> {
+public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByUsername(String username);
 
     Optional<User> findByEmail(@Param("email") String email);
