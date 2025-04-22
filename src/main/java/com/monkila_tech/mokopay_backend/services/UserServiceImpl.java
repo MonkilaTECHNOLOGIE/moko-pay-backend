@@ -1,16 +1,17 @@
-package com.monkilatech.madeinrdc.services;
+package com.monkila_tech.mokopay_backend.services;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.monkilatech.madeinrdc.models.User;
-import com.monkilatech.madeinrdc.repository.UserRepository;
+import com.monkila_tech.mokopay_backend.models.User;
+import com.monkila_tech.mokopay_backend.repository.UserRepository;
+
+
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -31,7 +32,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserById(UUID userId) throws Exception {
+    public User getUserById(Long userId) throws Exception {
         return userRepository.findById(userId).get();
     }
 
@@ -41,7 +42,7 @@ public class UserServiceImpl implements UserService {
     // }
 
     @Override
-    public Boolean deleteUserById(UUID userId) throws Exception {
+    public Boolean deleteUserById(Long userId) throws Exception {
 
         @SuppressWarnings("rawtypes")
         Optional user = this.userRepository.findById(userId);
@@ -101,7 +102,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User updatePassword(UUID id, String password) throws Exception {
+    public User updatePassword(Long id, String password) throws Exception {
 
         User userDB = userRepository.findById(id)
                 .get();
