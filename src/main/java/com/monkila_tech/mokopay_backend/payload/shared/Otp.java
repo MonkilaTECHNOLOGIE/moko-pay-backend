@@ -1,4 +1,4 @@
-package com.monkilatech.madeinrdc.payload.shared;
+package com.monkila_tech.mokopay_backend.payload.shared;
 
 import lombok.Getter;
 import lombok.Setter;
