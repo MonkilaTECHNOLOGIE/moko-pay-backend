@@ -20,7 +20,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.monkila_tech.mokopay_backend.security.jwt.AuthEntryPointJwt;
 import com.monkila_tech.mokopay_backend.security.jwt.AuthTokenFilter;
-import com.monkilatech.madeinrdc.security.services.UserDetailsServiceImpl;
+import com.monkila_tech.mokopay_backend.security.services.UserDetailsServiceImpl;
 
 import java.util.Arrays;
 import java.util.List;

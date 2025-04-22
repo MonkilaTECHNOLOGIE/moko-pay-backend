@@ -63,6 +63,7 @@ public class JwtUtils {
 
     public ResponseCookie getCleanJwtCookie() {
 
+        @SuppressWarnings("null")
         ResponseCookie cookie = ResponseCookie.from(jwtCookie, null).path("/api/auth").build();
         return cookie;
     }

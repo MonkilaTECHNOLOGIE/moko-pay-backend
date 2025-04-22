@@ -28,9 +28,10 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 
     private static final Logger logger = LoggerFactory.getLogger(AuthTokenFilter.class);
 
+    @SuppressWarnings("null")
     @Override
-    protected void doFilterInternal(HttpServletRequest request,
-            HttpServletResponse response, FilterChain filterChain)
+    protected void doFilterInternal( HttpServletRequest request,
+          HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
         try {
             String jwt = request.getHeader("Authorization");
