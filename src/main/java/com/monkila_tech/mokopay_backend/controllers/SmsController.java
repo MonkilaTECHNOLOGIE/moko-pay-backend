@@ -1,21 +1,25 @@
-package com.monkilatech.madeinrdc.controllers;
+package com.monkila_tech.mokopay_backend.controllers;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.monkilatech.madeinrdc.payload.request.SendMessageRequest;
-import com.monkilatech.madeinrdc.payload.response.StatusResponse;
-import com.monkilatech.madeinrdc.services.SmsService;
+import com.monkila_tech.mokopay_backend.payload.request.SendMessageRequest;
+import com.monkila_tech.mokopay_backend.payload.response.StatusResponse;
+import com.monkila_tech.mokopay_backend.services.SmsService;
+
+
 
 @RestController
 @RequestMapping("/api/sms")
 public class SmsController {
 
+    @SuppressWarnings("unused")
     @Autowired
     private SmsService smsService;
 
+    @SuppressWarnings("unused")
     @PostMapping("/send")
     public ResponseEntity<?> sendSms(@RequestBody SendMessageRequest messageRequest) {
 
@@ -27,7 +31,7 @@ public class SmsController {
                     "Bonjour, Vous avez demandé un code de vérification. \n Voici votre code :"
                      + messageRequest.getCode() +  "." ;
 
-            smsService.sendSms(messageRequest.getTo(), messagePayload);
+            // smsService.sendSms(messageRequest.getTo(), messagePayload);
             statusResponse.setMessage("Message envoyé avec success au" + messageRequest.getTo());
         } catch (Exception e) {
             statusResponse.setMessage(e.getMessage());

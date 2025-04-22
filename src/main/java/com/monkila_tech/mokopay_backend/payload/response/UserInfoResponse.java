@@ -1,7 +1,6 @@
 package com.monkila_tech.mokopay_backend.payload.response;
 
 import java.util.List;
-import java.util.UUID;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UserInfoResponse {
-    private UUID id;
+    private Long id;
     private String username;
     private String email;
     private String profil;
@@ -18,7 +17,7 @@ public class UserInfoResponse {
     private List<String> roles;
     private String token;
 
-    public UserInfoResponse(UUID id, String username, String email, Boolean status, List<String> roles, String token,
+    public UserInfoResponse(Long id, String username, String email, Boolean status, List<String> roles, String token,
             String profil, String phone) {
         this.id = id;
         this.username = username;
