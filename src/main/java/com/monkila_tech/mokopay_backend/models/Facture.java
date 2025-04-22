@@ -29,7 +29,7 @@ public class Facture {
 
     private LocalDateTime dateEcheance;
 
-    private boolean payee;
+    private Boolean payee;
 
     @ManyToOne
     @JoinColumn(name = "client_id")

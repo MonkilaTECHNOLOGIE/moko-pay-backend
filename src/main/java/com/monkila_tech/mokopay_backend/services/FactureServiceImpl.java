@@ -1,179 +1,80 @@
 package com.monkila_tech.mokopay_backend.services;
 
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.monkila_tech.mokopay_backend.models.Facture;
+import com.monkila_tech.mokopay_backend.repository.FactureRepository;
 
 @Service
 public class FactureServiceImpl implements FactureService {
     @Autowired
-    private PostRepository postRepository;
+    private FactureRepository factureRepository;
 
     @Override
-    public Post savePost(Post post) throws Exception {
-        return postRepository.save(post);
+    public Facture saveFacture(Facture facture) throws Exception {
+        return factureRepository.save(facture);
     }
 
     @Override
-    public List<Post> fetchPostList() throws Exception {
-        return (List<Post>) postRepository.findAll();
+    public List<Facture> fetchFactureList() throws Exception {
+        return (List<Facture>) factureRepository.findAll();
     }
 
-    @SuppressWarnings("unchecked")
-    @Override
-    public List<Post> fetchPostSponsorise() throws Exception {
-        return (List<Post>) postRepository.getPostSponsorise();
-    }
-
-    @SuppressWarnings("unchecked")
-    @Override
-    public List<Post> fetchPostListByUserId(String userId) throws Exception {
-        return (List<Post>) postRepository.getByUserId(userId);
-    }
 
     @Override
-    public Post updatePost(Post post, Long postId) throws Exception {
+    public Facture payeFacture(Facture facture) throws Exception {
 
-        Post postDB = postRepository.findById(postId)
+        Facture factureDB = factureRepository.findById(facture.getId())
                 .get();
 
-        if (Objects.nonNull(post.getNom())
-                && !"".equalsIgnoreCase(
-                        post.getNom())) {
-            postDB.setNom(
-                    post.getNom());
+        if (Objects.nonNull(facture.getPayee())) {
+            factureDB.setPayee(facture.getPayee());
         }
 
-        if (Objects.nonNull(post.getDescription())
-                && !"".equalsIgnoreCase(
-                        post.getDescription())) {
-            postDB.setDescription(
-                    post.getDescription());
-        }
-
-        if (Objects.nonNull(post.getLocalisation())
-                && !"".equalsIgnoreCase(
-                        post.getLocalisation())) {
-            postDB.setLocalisation(
-                    post.getLocalisation());
-        }
-
-        // if (Objects.nonNull(post.getProprietaire())
-        // && !"".equalsIgnoreCase(
-        // post.getProprietaire())) {
-        // postDB.setProprietaire(
-        // post.getProprietaire());
-        // }
-
-        // if (Objects.nonNull(post.getContact())
-        // && !"".equalsIgnoreCase(
-        // post.getContact())) {
-        // postDB.setContact(
-        // post.getContact());
-        // }
-
-        if (Objects.nonNull(post.getCreatedAt())
-                && !"".equalsIgnoreCase(
-                        post.getCreatedAt())) {
-            postDB.setCreatedAt(
-                    post.getCreatedAt());
-        }
-
-        if (Objects.nonNull(post.getPhotos1())
-                && !"".equalsIgnoreCase(
-                        post.getPhotos1())) {
-            postDB.setPhotos1(
-                    post.getPhotos1());
-        }
-
-        if (Objects.nonNull(post.getPhotos2())
-                && !"".equalsIgnoreCase(
-                        post.getPhotos2())) {
-            postDB.setPhotos2(
-                    post.getPhotos2());
-        }
-
-        if (Objects.nonNull(post.getPhotos3())
-                && !"".equalsIgnoreCase(
-                        post.getPhotos3())) {
-            postDB.setPhotos3(
-                    post.getPhotos3());
-        }
-
-        // postDB.setPhotos(post.getPhotos());
-
-        postDB.setUser(post.getUser());
-
-        return postRepository.save(postDB);
+        return factureRepository.save(factureDB);
     }
 
     @Override
-    public Post getPostById(Long postId) throws Exception {
-        return postRepository.findById(postId).get();
-    }
-
-    // @SuppressWarnings("unchecked")
-    // @Override
-    // public List<Post> getPostByProprietaire(String proprietaire) {
-    // return (List<Post>) postRepository.getByProprietaire(proprietaire);
-    // }
-
-    @SuppressWarnings("unchecked")
-    @Override
-    public List<Post> getPostByLocolisation(String localisation) {
-        return (List<Post>) postRepository.getByLocalisation(localisation);
-    }
-
-    // @SuppressWarnings("unchecked")
-    // @Override
-    // public List<Post> getPostByCategorie(String categorie) {
-    // return (List<Post>) postRepository.getByCategorie(categorie);
-    // }
-
-    @SuppressWarnings("unchecked")
-    @Override
-    public List<Post> getPostByUsername(String username) {
-        return (List<Post>) postRepository.getByUsername(username);
+    public Facture getFactureById(Long factureId) throws Exception {
+        return factureRepository.findById(factureId).get();
     }
 
     @Override
-    public Boolean deletePostById(Long postId) throws Exception {
+    public Boolean deleteFactureById(Long factureId) throws Exception {
 
-        Optional<Post> post = this.postRepository.findById(postId);
+        Optional<Facture> facture = this.factureRepository.findById(factureId);
 
-        if (post.isEmpty())
+        if (facture.isEmpty())
             return false;
 
-        this.postRepository.deleteById(postId);
+        this.factureRepository.deleteById(factureId);
 
-        Optional<Post> postChecked = this.postRepository.findById(postId);
+        Optional<Facture> factureChecked = this.factureRepository.findById(factureId);
 
-        if (postChecked.isEmpty())
+        if (factureChecked.isEmpty())
             return true;
         return false;
 
     }
 
     @Override
-    public Boolean deletePostByIdAndUserId(Long userId, Long planId) throws Exception {
-
-        Optional<Post> post = this.postRepository.findById(planId);
-
-        if (post.isEmpty())
-            return false;
-
-        this.postRepository.deleteByUserId(userId);
-
-        Optional<Post> postChecked = this.postRepository.findById(planId);
-
-        if (postChecked.isEmpty())
-            return true;
-        return false;
-
+    public List<Facture> fetchFacturePaye() throws Exception {
+        return this.factureRepository.findFacturePayee().get();
     }
 
-    @SuppressWarnings("unchecked")
     @Override
-    public List<Post> fetchPostByDate() throws Exception {
-        return (List<Post>) postRepository.getByDate();
+    public List<Facture> fetchFactureListByUserId(Long userId) throws Exception {
+        return this.factureRepository.findByDate().get();
     }
+
+    @Override
+    public List<Facture> fetchFactureByDate() throws Exception {
+        return this.factureRepository.findByDate().get();
+    }
+
 }
