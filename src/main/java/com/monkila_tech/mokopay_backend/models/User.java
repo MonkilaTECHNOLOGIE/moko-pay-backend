@@ -3,7 +3,9 @@ package com.monkila_tech.mokopay_backend.models;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -11,7 +13,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+// @Builder
 public class User {
 
     @Id
@@ -27,6 +29,14 @@ public class User {
     private String phone;
 
     private String password;
+
+    private String profil;
+
+    private boolean status;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
 
     @OneToMany(mappedBy = "sender")
     private List<Transaction> sentTransactions;
