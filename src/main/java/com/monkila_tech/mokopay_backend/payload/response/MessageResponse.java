@@ -1,4 +1,4 @@
-package com.monkilatech.madeinrdc.payload.response;
+package com.monkila_tech.mokopay_backend.payload.response;
 
 public class MessageResponse {
     private String message;

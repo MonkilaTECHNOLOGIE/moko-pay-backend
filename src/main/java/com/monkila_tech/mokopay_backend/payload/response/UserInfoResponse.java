@@ -1,4 +1,4 @@
-package com.monkilatech.madeinrdc.payload.response;
+package com.monkila_tech.mokopay_backend.payload.response;
 
 import java.util.List;
 import java.util.UUID;
