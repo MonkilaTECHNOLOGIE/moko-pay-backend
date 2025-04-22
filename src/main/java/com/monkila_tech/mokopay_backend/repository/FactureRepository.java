@@ -20,7 +20,7 @@ public interface FactureRepository extends JpaRepository<Facture, Long> {
      @Query("SELECT f FROM Facture f ORDER BY p.createdAt DESC")
      Optional<List<Facture>> findByDate();
 
-     @Query("SELECT f FROM Facture f WHERE f.dateEmission BETWEEN :dateDebut AND :dateFin")
+     @Query("SELECT f FROM Facture f WHERE f.createdAt BETWEEN :dateDebut AND :dateFin")
      List<Facture> findByDateEmissionBetween(@Param("dateDebut") Date dateDebut,
                                         @Param("dateFin") Date dateFin);
     
