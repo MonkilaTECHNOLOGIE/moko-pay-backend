@@ -1,4 +1,4 @@
-package com.monkilatech.madeinrdc.security.services;
+package com.monkila_tech.mokopay_backend.security.services;
 
 import java.util.Collection;
 import java.util.List;
@@ -11,14 +11,15 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.monkilatech.madeinrdc.models.User;
+import com.monkila_tech.mokopay_backend.models.User;
+
 
 
 public class UserDetailsImpl implements UserDetails {
     
     private static final long serialVersionUID = 1L;
 
-    private UUID id;
+    private Long id;
     private String username;
     private String email;
     private String profil;
@@ -30,7 +31,7 @@ public class UserDetailsImpl implements UserDetails {
 
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UserDetailsImpl(UUID id, String username, String email, String password,
+    public UserDetailsImpl(Long id, String username, String email, String password,
             Boolean status, Collection<? extends GrantedAuthority> authorities, String profil, String phone) {
         this.id = id;
         this.username = username;
@@ -62,7 +63,7 @@ public class UserDetailsImpl implements UserDetails {
         return authorities;
     }
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 

@@ -1,4 +1,4 @@
-package com.monkilatech.madeinrdc.security.services;
+package com.monkila_tech.mokopay_backend.security.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -6,8 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.monkilatech.madeinrdc.models.User;
-import com.monkilatech.madeinrdc.repository.UserRepository;
+
 
 import jakarta.transaction.Transactional;
 
@@ -21,7 +20,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Transactional
     public UserDetails loadUserByUsername(String auth) throws UsernameNotFoundException {
 
-        User user;
+        com.monkila_tech.mokopay_backend.models.User user;
 
         if (auth.contains("@")) {
             user = userRepository.findByEmail(auth)
