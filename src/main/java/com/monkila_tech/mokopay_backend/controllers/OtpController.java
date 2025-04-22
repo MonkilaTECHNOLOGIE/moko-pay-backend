@@ -1,4 +1,4 @@
-package com.monkilatech.madeinrdc.controllers;
+package com.monkila_tech.mokopay_backend.controllers;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,10 +10,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
-import com.monkilatech.madeinrdc.payload.request.SendMailRequest;
-import com.monkilatech.madeinrdc.payload.response.StatusResponse;
-import com.monkilatech.madeinrdc.services.OtpService;
-import com.monkilatech.madeinrdc.utils.ValueException;
+import com.monkila_tech.mokopay_backend.payload.request.SendMailRequest;
+import com.monkila_tech.mokopay_backend.payload.response.StatusResponse;
+import com.monkila_tech.mokopay_backend.services.OtpService;
+import com.monkila_tech.mokopay_backend.utils.ValueException;
+
+
 
 @RestController
 @RequestMapping("/api/auth")
@@ -29,6 +31,7 @@ public class OtpController {
     private static final String SEND_OTP_URL = "https://identitytoolkit.googleapis.com/v1/accounts:sendVerificationCode?key=" + FIREBASE_API_KEY;
     private static final String VERIFY_OTP_URL = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPhoneNumber?key=" + FIREBASE_API_KEY;
 
+    @SuppressWarnings("null")
     @GetMapping("/sendOtp")
     public String sendOtp(@RequestBody SendMailRequest sendMailRequest) {
         RestTemplate restTemplate = new RestTemplate();
@@ -41,6 +44,7 @@ public class OtpController {
         return response.getBody().get("sessionInfo").toString(); 
     }
 
+    @SuppressWarnings("null")
     @GetMapping("/verifyOtp")
     public String verifyOtp(@RequestBody SendMailRequest sendMailRequest) {
         RestTemplate restTemplate = new RestTemplate();
