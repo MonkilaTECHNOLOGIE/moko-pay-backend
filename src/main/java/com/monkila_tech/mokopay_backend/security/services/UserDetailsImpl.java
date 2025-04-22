@@ -3,7 +3,6 @@ package com.monkila_tech.mokopay_backend.security.services;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.springframework.security.core.GrantedAuthority;
