@@ -43,4 +43,13 @@ public class User {
 
     @OneToMany(mappedBy = "receiver")
     private List<Transaction> receivedTransactions;
+
+    public User(String username, String email, String password, Boolean status, String profil, String phone) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.status = status;
+        this.profil = profil;
+        this.phone = phone;
+    }
 }
