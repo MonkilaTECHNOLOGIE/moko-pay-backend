@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "factures")
@@ -25,9 +25,8 @@ public class Facture {
 
     private BigDecimal montant;
 
-    private LocalDateTime dateEmission;
-
-    private LocalDateTime dateEcheance;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
 
     private Boolean payee;
 
@@ -38,4 +37,9 @@ public class Facture {
     @OneToOne
     @JoinColumn(name = "transaction_id")
     private Transaction transaction; 
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = new Date();
+    }
 }
