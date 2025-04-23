@@ -2,6 +2,7 @@ package com.monkila_tech.mokopay_backend.services;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +36,9 @@ public class TransactionServiceImpl implements TransactionService {
         Transaction transactionDB = transactionRepository.findById(transaction.getId())
                 .get();
 
-        // if (Objects.nonNull(transaction.getPayee())) {
-        //     transactionDB.setPayee(transaction.getPayee());
-        // }
+        if (Objects.nonNull(transaction.getStatus())) {
+            transactionDB.setStatus(transaction.getStatus());
+        }
 
         return transactionRepository.save(transactionDB);
     }
@@ -64,8 +65,6 @@ public class TransactionServiceImpl implements TransactionService {
         return false;
 
     }
-
-   
 
     @Override
     public List<Transaction> fetchTransactionListByUserId(Long userId) throws Exception {
