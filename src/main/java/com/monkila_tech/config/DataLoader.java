@@ -13,7 +13,6 @@ import com.monkila_tech.mokopay_backend.models.ERole;
 import com.monkila_tech.mokopay_backend.models.Role;
 import com.monkila_tech.mokopay_backend.models.User;
 import com.monkila_tech.mokopay_backend.repository.RoleRepository;
-import com.monkila_tech.mokopay_backend.repository.TransactionRepository;
 import com.monkila_tech.mokopay_backend.repository.UserRepository;
 
 
