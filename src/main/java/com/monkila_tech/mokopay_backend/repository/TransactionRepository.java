@@ -15,6 +15,7 @@ import com.monkila_tech.mokopay_backend.models.TransactionStatus;
 
 @Repository
 public interface TransactionRepository extends JpaRepository<Transaction, Long> {
+
      @Query("SELECT f FROM Transaction f WHERE f.payee=true")
      Optional<List<Transaction>> findTransactionPayee();
 
@@ -28,6 +29,5 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long> 
      @Query("SELECT f FROM Transaction f WHERE f.user.id =:dateFin")
      List<Transaction> findByTransactionByUserId(@Param("userId") Long userId);
 
-     @Query("SELECT f FROM Transaction f WHERE f.status =:transactionStatus")
-     List<Transaction> findByTransactionByStatus(@Param("transactionStatus") TransactionStatus transactionStatus);
+     List<Transaction> findByStatus(TransactionStatus transactionStatus);
 }

@@ -72,8 +72,8 @@ public class TransactionController {
         StatusResponse statusResponse = new StatusResponse();
 
         try {
-            List<Transaction> TransactionDb = transactionService.fetchTransactionStatus(transactionStatus);
-            statusResponse.setData(TransactionDb);
+            List<Transaction> transactionDb = transactionService.fetchTransactionStatus(transactionStatus);
+            statusResponse.setData(transactionDb);
             statusResponse.setMessage("La liste des Transaction par status");
             statusResponse.setStatus(HttpStatus.OK.value());
             return new ResponseEntity<>(statusResponse, HttpStatus.OK);

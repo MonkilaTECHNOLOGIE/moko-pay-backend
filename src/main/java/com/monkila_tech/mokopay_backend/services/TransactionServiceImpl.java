@@ -83,6 +83,6 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public List<Transaction> fetchTransactionStatus(TransactionStatus transactionStatus) throws Exception {
-       return this.transactionRepository.findByTransactionByStatus(transactionStatus);
+       return this.transactionRepository.findByStatus(transactionStatus);
     }
 }
