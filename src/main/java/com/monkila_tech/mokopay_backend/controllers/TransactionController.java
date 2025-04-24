@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.monkila_tech.mokopay_backend.models.Transaction;
+import com.monkila_tech.mokopay_backend.models.TransactionStatus;
 import com.monkila_tech.mokopay_backend.payload.response.StatusResponse;
 import com.monkila_tech.mokopay_backend.services.TransactionService;
 
@@ -64,24 +65,24 @@ public class TransactionController {
         }
     }
 
-    // @SuppressWarnings("rawtypes")
-    // @GetMapping("/payees")
-    // public ResponseEntity<StatusResponse> fetchTransactionPaye() throws Exception {
+    @SuppressWarnings("rawtypes")
+    @GetMapping("/status/{transactionStatus}")
+    public ResponseEntity<StatusResponse> fetchTransactionPaye(@PathVariable TransactionStatus transactionStatus) throws Exception {
        
-    //     StatusResponse statusResponse = new StatusResponse();
+        StatusResponse statusResponse = new StatusResponse();
 
-    //     try {
-    //         List<Transaction> TransactionDb = transactionService.fetchTransactionPaye();
-    //         statusResponse.setData(TransactionDb);
-    //         statusResponse.setMessage("La liste des Transaction payées");
-    //         statusResponse.setStatus(HttpStatus.OK.value());
-    //         return new ResponseEntity<>(statusResponse, HttpStatus.OK);
-    //     } catch (Exception e) {
-    //         statusResponse.setMessage("Erreur lors de la recuperation des Transactions : " + e.getMessage());
-    //         statusResponse.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
-    //         return new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-    //     }
-    // }
+        try {
+            List<Transaction> TransactionDb = transactionService.fetchTransactionStatus(transactionStatus);
+            statusResponse.setData(TransactionDb);
+            statusResponse.setMessage("La liste des Transaction par status");
+            statusResponse.setStatus(HttpStatus.OK.value());
+            return new ResponseEntity<>(statusResponse, HttpStatus.OK);
+        } catch (Exception e) {
+            statusResponse.setMessage("Erreur lors de la recuperation des Transactions : " + e.getMessage());
+            statusResponse.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
+            return new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     @SuppressWarnings("rawtypes")
     @GetMapping("/user/{userId}")
