@@ -1,5 +1,6 @@
 package com.monkila_tech.mokopay_backend.services;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -69,12 +70,17 @@ public class FactureServiceImpl implements FactureService {
 
     @Override
     public List<Facture> fetchFactureListByUserId(Long userId) throws Exception {
-        return this.factureRepository.findByDate().get();
+        return this.factureRepository.findByFactureByUserId(userId);
     }
 
     @Override
     public List<Facture> fetchFactureByDate() throws Exception {
         return this.factureRepository.findByDate().get();
+    }
+
+    @Override
+    public List<Facture> fetchFactureByDateDebutFin(Date dateDebut, Date dateFin) throws Exception {
+       return this.factureRepository.findByDateEmissionBetween(dateDebut, dateFin);
     }
 
 }

@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "transactions")
@@ -27,7 +27,8 @@ public class Transaction {
     @Enumerated(EnumType.STRING)
     private TransactionStatus status;
 
-    private LocalDateTime createdAt;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
 
     @ManyToOne
     @JoinColumn(name = "sender_id")
@@ -36,4 +37,9 @@ public class Transaction {
     @ManyToOne
     @JoinColumn(name = "receiver_id")
     private User receiver;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = new Date();
+    }
 }
