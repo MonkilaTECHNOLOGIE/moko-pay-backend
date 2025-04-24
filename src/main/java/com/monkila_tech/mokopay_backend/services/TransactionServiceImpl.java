@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.monkila_tech.mokopay_backend.models.Transaction;
 import com.monkila_tech.mokopay_backend.models.TransactionStatus;
 import com.monkila_tech.mokopay_backend.repository.TransactionRepository;
+import com.monkila_tech.websocket.TransactionNotifier;
 
 
 
@@ -19,9 +20,14 @@ public class TransactionServiceImpl implements TransactionService {
     @Autowired
     private TransactionRepository transactionRepository;
 
+    @Autowired 
+    private TransactionNotifier notifier;
+
     @Override
     public Transaction saveTransaction(Transaction transaction) throws Exception {
-        return transactionRepository.save(transaction);
+        Transaction saved = transactionRepository.save(transaction);
+        notifier.notifyClients(saved);
+        return saved;
     }
 
     @Override
@@ -40,7 +46,10 @@ public class TransactionServiceImpl implements TransactionService {
             transactionDB.setStatus(transaction.getStatus());
         }
 
-        return transactionRepository.save(transactionDB);
+        Transaction updated = transactionRepository.save(transactionDB);
+        notifier.notifyClients(updated);
+
+        return updated;
     }
 
     @Override
