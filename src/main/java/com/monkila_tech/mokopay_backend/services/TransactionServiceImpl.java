@@ -31,7 +31,7 @@ public class TransactionServiceImpl implements TransactionService {
 
 
     @Override
-    public Transaction payeTransaction(Transaction transaction) throws Exception {
+    public Transaction updateTransaction(Transaction transaction) throws Exception {
 
         Transaction transactionDB = transactionRepository.findById(transaction.getId())
                 .get();

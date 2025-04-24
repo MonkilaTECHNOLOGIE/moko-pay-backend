@@ -20,7 +20,7 @@ public interface TransactionService {
 
     List<Transaction> fetchTransactionByDate() throws Exception;
 
-    Transaction payeTransaction(Transaction transaction) throws Exception;
+    Transaction updateTransaction(Transaction transaction) throws Exception;
 
     Transaction getTransactionById(Long transactionId) throws Exception;
 
