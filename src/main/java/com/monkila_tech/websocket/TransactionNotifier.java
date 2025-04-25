@@ -1,5 +1,7 @@
 package com.monkila_tech.websocket;
 
+import java.beans.JavaBean;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Component;
@@ -7,7 +9,6 @@ import org.springframework.stereotype.Component;
 import com.monkila_tech.mokopay_backend.models.Transaction;
 
 @Component
-
 public class TransactionNotifier {
     @Autowired 
     private SimpMessagingTemplate messagingTemplate;

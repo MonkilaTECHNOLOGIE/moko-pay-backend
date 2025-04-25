@@ -17,14 +17,14 @@ public interface FactureRepository extends JpaRepository<Facture, Long> {
      @Query("SELECT f FROM Facture f WHERE f.payee=true")
      Optional<List<Facture>> findFacturePayee();
 
-     @Query("SELECT f FROM Facture f ORDER BY p.createdAt DESC")
+     @Query("SELECT f FROM Facture f ORDER BY f.createdAt DESC")
      Optional<List<Facture>> findByDate();
 
      @Query("SELECT f FROM Facture f WHERE f.createdAt BETWEEN :dateDebut AND :dateFin")
      List<Facture> findByDateEmissionBetween(@Param("dateDebut") Date dateDebut,
                                         @Param("dateFin") Date dateFin);
     
-     @Query("SELECT f FROM Facture f WHERE f.user.id =:dateFin")
-     List<Facture> findByFactureByUserId(@Param("userId") Long userId);
+     @Query("SELECT f FROM Facture f WHERE f.client.id =:clientID")
+     List<Facture> findByFactureByUserId(@Param("clientId") Long clientId);
     
 }

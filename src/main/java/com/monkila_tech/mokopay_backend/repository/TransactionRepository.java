@@ -16,17 +16,17 @@ import com.monkila_tech.mokopay_backend.models.TransactionStatus;
 @Repository
 public interface TransactionRepository extends JpaRepository<Transaction, Long> {
 
-     @Query("SELECT f FROM Transaction f WHERE f.payee=true")
-     Optional<List<Transaction>> findTransactionPayee();
+    //  @Query("SELECT f FROM Transaction f WHERE f.payee=true")
+    //  Optional<List<Transaction>> findTransactionPayee();
 
-     @Query("SELECT f FROM Transaction f ORDER BY p.createdAt DESC")
+     @Query("SELECT f FROM Transaction f ORDER BY f.createdAt DESC")
      Optional<List<Transaction>> findByDate();
 
      @Query("SELECT f FROM Transaction f WHERE f.createdAt BETWEEN :dateDebut AND :dateFin")
      List<Transaction> findByDateEmissionBetween(@Param("dateDebut") Date dateDebut,
                                         @Param("dateFin") Date dateFin);
     
-     @Query("SELECT f FROM Transaction f WHERE f.user.id =:dateFin")
+     @Query("SELECT f FROM Transaction f WHERE f.sender.id =:userId")
      List<Transaction> findByTransactionByUserId(@Param("userId") Long userId);
 
      List<Transaction> findByStatus(TransactionStatus transactionStatus);
