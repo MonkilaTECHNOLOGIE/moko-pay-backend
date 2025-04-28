@@ -36,8 +36,8 @@ public class DataLoader implements CommandLineRunner {
 
 
         if (activeProfile.equals("dev") || activeProfile.equals("test")) {
-            userRepository.deleteAll();
-            System.out.println("User supprimé avec success");
+            // userRepository.deleteAll();
+            // System.out.println("User supprimé avec success");
 
             insererRoleSiNonExistant(ERole.ROLE_ADMIN);
             insererRoleSiNonExistant(ERole.ROLE_BUYER);
