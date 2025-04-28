@@ -1,6 +1,5 @@
-package com.monkila_tech.websocket;
+package com.monkila_tech.mokopay_backend.websocket;
 
-import java.beans.JavaBean;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;

@@ -1,4 +1,4 @@
-package com.monkila_tech.config;
+package com.monkila_tech.mokopay_backend.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;

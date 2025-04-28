@@ -11,7 +11,8 @@ import org.springframework.stereotype.Service;
 import com.monkila_tech.mokopay_backend.models.Transaction;
 import com.monkila_tech.mokopay_backend.models.TransactionStatus;
 import com.monkila_tech.mokopay_backend.repository.TransactionRepository;
-import com.monkila_tech.websocket.TransactionNotifier;
+import com.monkila_tech.mokopay_backend.websocket.TransactionNotifier;
+
 
 
 
